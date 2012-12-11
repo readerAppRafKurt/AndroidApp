@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">POCRSS</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Het Nieuwsblad artikels</string>
+    <string name="single_article">Artikel</string>
+
+</resources>
