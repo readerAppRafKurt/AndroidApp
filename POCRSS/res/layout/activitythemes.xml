@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThemesActivity" 
+    style="?backgroundTheme">
+
+    <Spinner
+        android:id="@+id/spinnerthemes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?spinnerTheme"/>
+
+    <Button
+        android:id="@+id/btnConfirmSettingThemes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dip"
+        android:text="@string/confirm" 
+        style="?buttonTheme"/>
+
+</RelativeLayout>

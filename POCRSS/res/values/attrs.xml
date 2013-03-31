@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <resources>
+       <attr name="textTitle" format="reference" />
+       <attr name="textBody" format="reference" />
+       <attr name="buttonText" format="reference"/>
+       <attr name="radioButtonText" format="reference"/>
+       <attr name="backgroundTheme" format="reference"/>     
+       <attr name="buttonTheme" format="reference"/>
+       <attr name="spinnerTheme" format="reference"/>
+       <attr name="listviewTheme" format="reference"/>
+ </resources>

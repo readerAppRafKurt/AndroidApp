@@ -1,20 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pocrss"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="10"
         android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:allowBackup="false"
+        android:debuggable="true"
+        android:icon="@drawable/icon_image"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.Gray" >
         <activity
-            android:name=".MainActivity"
+            android:name="activities.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +28,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SingleMenuItemActivity"
+            android:name="activities.PhoneSingleArticleActivity"
             android:label="@string/single_article" >
+        </activity>
+        <activity
+            android:name="activities.SearchArticleActivity"
+            android:label="@string/title_activity_search_article" >
+        </activity>
+        <activity
+            android:name="activities.RSSFeedsActivity"
+            android:label="@string/choicefeedsactivity" >
+        </activity>
+        <activity
+            android:name="activities.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="activities.FontsActivity"
+            android:label="@string/title_activity_fonts" >
+        </activity>
+        <activity
+            android:name="activities.ThemesActivity"
+            android:label="@string/title_activity_themes" >
+        </activity>
+        <activity
+            android:name="activities.PageTurnActivity"
+            android:label="@string/title_activity_page_turn" >
+        </activity>
+        <activity
+            android:name="activities.ListTitlesArticleForSingleThemeActivity"
+            android:label="@string/title_activity_list_titles_article_for_single_theme" >
+        </activity>
+        <activity
+            android:name="activities.ListTitlesAndBeginForSingleThemeActivity"
+            android:label="@string/title_activity_list_titles_and_begin_for_single_theme" >
+        </activity>
+        <activity
+            android:name="activities.TabletHorizontalOverviewActivity"
+            android:label="@string/title_activity_tablet_horizontal_overview" >
+        </activity>
+        <activity
+            android:name="activities.TabletSingleArticleActivity"
+            android:label="@string/title_activity_tablet_single_article" >
+        </activity>
+        <activity
+            android:name="activities.LayoutsActivity"
+            android:label="@string/title_activity_layouts" >
+        </activity>
+        <activity
+            android:name="activities.Phone2Activity"
+            android:label="@string/title_activity_two_articles_per_theme" >
+        </activity>
+        <activity
+            android:name="activities.Phone1Activity"
+            android:label="@string/title_activity_phone1" >
+        </activity>
+        <activity
+            android:name="activities.SingleArticleSearchActivity"
+            android:label="@string/title_activity_single_article_search" >
+        </activity>
+        <activity
+            android:name="activities.Phone3Activity"
+            android:label="@string/title_activity_phone3" >
+        </activity>
+        <activity
+            android:name="activities.FullScreenImageActivity"
+            android:label="@string/title_activity_full_screen_image" >          
         </activity>
     </application>
 

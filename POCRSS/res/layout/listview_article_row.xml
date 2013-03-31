@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    style="?backgroundTheme" >
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/app_name"
+        android:gravity="left" />
+
+    <LinearLayout
+        android:id="@+id/innerLayoutListViewArticleRow"
+        style="?backgroundTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/imgIcon"
+        android:baselineAligned="false"
+        android:weightSum="100" >
+
+        <LinearLayout
+            android:id="@+id/innerLayoutListViewArticleRowDateAndTitle"
+            style="?backgroundTheme"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="90"
+            android:baselineAligned="false"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtDate"
+                style="?textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                style="?textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/innerLayoutListViewArticleRowArrow"
+            style="?backgroundTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="10"
+            android:baselineAligned="false"
+            android:layout_gravity="center" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/list_item_arrow"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

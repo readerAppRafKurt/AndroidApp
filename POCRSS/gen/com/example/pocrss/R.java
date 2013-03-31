@@ -8,35 +8,432 @@
 package com.example.pocrss;
 
 public final class R {
+    public static final class array {
+        public static final int fonts=0x7f060000;
+        public static final int layouts=0x7f060003;
+        public static final int page_turns=0x7f060002;
+        public static final int settings=0x7f060004;
+        public static final int themes=0x7f060001;
+    }
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int backgroundTheme=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonText=0x7f010002;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonTheme=0x7f010005;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int listviewTheme=0x7f010007;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int radioButtonText=0x7f010003;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int spinnerTheme=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textBody=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int textTitle=0x7f010000;
+    }
+    public static final class color {
+        public static final int dark_blue=0x7f040003;
+        public static final int dark_gray=0x7f040005;
+        public static final int dark_red=0x7f040001;
+        public static final int light_blue=0x7f040004;
+        public static final int light_gray=0x7f040006;
+        public static final int light_red=0x7f040002;
+        public static final int text_color=0x7f040000;
     }
     public static final class drawable {
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int button_blue_theme=0x7f020000;
+        public static final int button_gray_theme=0x7f020001;
+        public static final int button_red_theme=0x7f020002;
+        public static final int customborder=0x7f020003;
+        public static final int expander_ic_minimized=0x7f020004;
+        public static final int ic_action_search=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int icon_image=0x7f020007;
+        public static final int list_item_arrow=0x7f020008;
+        public static final int listview_blue_theme=0x7f020009;
+        public static final int listview_gray_theme=0x7f02000a;
+        public static final int listview_red_theme=0x7f02000b;
+        public static final int red_drop_down=0x7f02000c;
     }
     public static final class id {
-        public static final int description_label=0x7f070002;
-        public static final int link_label=0x7f070003;
-        public static final int menu_settings=0x7f070004;
-        public static final int title=0x7f070000;
-        public static final int title_label=0x7f070001;
+        public static final int article1=0x7f090020;
+        public static final int article10=0x7f09003c;
+        public static final int article10description=0x7f09003e;
+        public static final int article10title=0x7f09003d;
+        public static final int article11=0x7f09003f;
+        public static final int article11description=0x7f090041;
+        public static final int article11title=0x7f090040;
+        public static final int article12=0x7f090042;
+        public static final int article12description=0x7f090044;
+        public static final int article12title=0x7f090043;
+        public static final int article13=0x7f090045;
+        public static final int article13description=0x7f090047;
+        public static final int article13title=0x7f090046;
+        public static final int article14=0x7f090048;
+        public static final int article14description=0x7f09004a;
+        public static final int article14title=0x7f090049;
+        public static final int article15=0x7f09004b;
+        public static final int article15description=0x7f09004d;
+        public static final int article15title=0x7f09004c;
+        public static final int article1description=0x7f090022;
+        public static final int article1title=0x7f090021;
+        public static final int article2=0x7f090023;
+        public static final int article2description=0x7f090025;
+        public static final int article2title=0x7f090024;
+        public static final int article3=0x7f090026;
+        public static final int article3description=0x7f090028;
+        public static final int article3title=0x7f090027;
+        public static final int article4=0x7f09002a;
+        public static final int article4description=0x7f09002c;
+        public static final int article4title=0x7f09002b;
+        public static final int article5=0x7f09002d;
+        public static final int article5description=0x7f09002f;
+        public static final int article5title=0x7f09002e;
+        public static final int article6=0x7f090030;
+        public static final int article6description=0x7f090032;
+        public static final int article6title=0x7f090031;
+        public static final int article7=0x7f090033;
+        public static final int article7description=0x7f090035;
+        public static final int article7title=0x7f090034;
+        public static final int article8=0x7f090036;
+        public static final int article8description=0x7f090038;
+        public static final int article8title=0x7f090037;
+        public static final int article9=0x7f090039;
+        public static final int article9description=0x7f09003b;
+        public static final int article9title=0x7f09003a;
+        public static final int articleDescriptionTablet=0x7f090016;
+        public static final int articleImage=0x7f090068;
+        public static final int articleImageTablet=0x7f090014;
+        public static final int articleTabletDescScroll=0x7f09006d;
+        public static final int articleTabletInSingleArticleScroller=0x7f090018;
+        public static final int articleTitleTablet=0x7f090015;
+        public static final int btnConfirmSettingLayouts=0x7f090002;
+        public static final int btnConfirmSettingPageTurner=0x7f09001e;
+        public static final int btnConfirmSettingThemes=0x7f09004f;
+        public static final int btnConfirmSettingsFonts=0x7f09001b;
+        public static final int btnOverviewArticles=0x7f090008;
+        public static final int btnSearch=0x7f090009;
+        public static final int btnSearchArticleById=0x7f090010;
+        public static final int btnSearchArticles=0x7f09000d;
+        public static final int channelTabletDescScroll=0x7f09006c;
+        public static final int channelTabletInSingleArticleScroller=0x7f090017;
+        public static final int channelTabletOverviewChannelScroller=0x7f090029;
+        public static final int chkBinnenland=0x7f090050;
+        public static final int chkBuitenland=0x7f090051;
+        public static final int chkCultuur=0x7f090052;
+        public static final int chkEconomie=0x7f090053;
+        public static final int chkLife=0x7f090054;
+        public static final int choiceFeedsMenu=0x7f090070;
+        public static final int descriptionInSingleArticleInList=0x7f090063;
+        public static final int description_label=0x7f090066;
+        public static final int editTextSearchArticleById=0x7f090011;
+        public static final int imageFullScreen=0x7f090000;
+        public static final int imageInSingleArticleInList=0x7f090061;
+        public static final int imgIcon=0x7f09005a;
+        public static final int imgIconArticle1=0x7f090056;
+        public static final int innerLayoutListViewArticleRow=0x7f09005b;
+        public static final int innerLayoutListViewArticleRowArrow=0x7f09005f;
+        public static final int innerLayoutListViewArticleRowDateAndTitle=0x7f09005c;
+        public static final int layoutArticle1Phone3=0x7f090055;
+        public static final int layoutInternPhone1=0x7f09000e;
+        public static final int layoutListTitlesAndBeginForSingleTheme=0x7f090003;
+        public static final int layoutPhone1=0x7f09000c;
+        public static final int layoutPossibleChoice=0x7f090058;
+        public static final int layoutTwoArticlesPerTheme=0x7f090019;
+        public static final int layoutinternmain=0x7f09000b;
+        public static final int layoutmain=0x7f090007;
+        public static final int linearLayoutTabletSingleArticleScroll=0x7f090069;
+        public static final int linearLayoutTitleImage=0x7f09006a;
+        public static final int link_label=0x7f090067;
+        public static final int listArticlesForTheme=0x7f090006;
+        public static final int listFoundArticles=0x7f090012;
+        public static final int listViewPhone3=0x7f09000f;
+        public static final int menu_settings=0x7f09006e;
+        public static final int progressBarPhone1=0x7f090004;
+        public static final int progressBarPhone2=0x7f090005;
+        public static final int progressDownloads=0x7f09000a;
+        public static final int progressTablet=0x7f09001f;
+        public static final int relativeLayoutSingleArticleInList=0x7f090060;
+        public static final int scrollDescriptionTablet=0x7f09006b;
+        public static final int scrollViewTabletSingleArticleScroll=0x7f090013;
+        public static final int scroll_view_start_test_for_all=0x7f090064;
+        public static final int settingsMenu=0x7f09006f;
+        public static final int spinnerfonts=0x7f09001a;
+        public static final int spinnerlayouts=0x7f090001;
+        public static final int spinnerpageturner=0x7f09001d;
+        public static final int spinnerthemes=0x7f09004e;
+        public static final int title=0x7f090059;
+        public static final int titleInSingleArticleInList=0x7f090062;
+        public static final int title_label=0x7f090065;
+        public static final int txtDate=0x7f09005d;
+        public static final int txtTitle=0x7f09005e;
+        public static final int txtTitleArticle1=0x7f090057;
+        public static final int txvspinnerpageturner=0x7f09001c;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int list_item=0x7f030001;
-        public static final int single_list_item=0x7f030002;
+        public static final int activity_article_overview=0x7f030000;
+        public static final int activity_full_screen_image=0x7f030001;
+        public static final int activity_layouts=0x7f030002;
+        public static final int activity_list_titles_and_begin_for_single_theme=0x7f030003;
+        public static final int activity_list_titles_article_for_single_theme=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_phone1=0x7f030006;
+        public static final int activity_phone3=0x7f030007;
+        public static final int activity_search_article=0x7f030008;
+        public static final int activity_tablet_single_article=0x7f030009;
+        public static final int activity_two_articles_per_theme=0x7f03000a;
+        public static final int activityfonts=0x7f03000b;
+        public static final int activitypageturn=0x7f03000c;
+        public static final int activitysettings=0x7f03000d;
+        public static final int activitytablethorizontaloverview=0x7f03000e;
+        public static final int activitythemes=0x7f03000f;
+        public static final int choicefeedsactivity=0x7f030010;
+        public static final int custom_image_view=0x7f030011;
+        public static final int first_article_phone3=0x7f030012;
+        public static final int layouts_spinner_row=0x7f030013;
+        public static final int list_item=0x7f030014;
+        public static final int listview_article_row=0x7f030015;
+        public static final int simple_list_item_1_mod=0x7f030016;
+        public static final int single_article_in_list=0x7f030017;
+        public static final int single_list_item=0x7f030018;
+        public static final int tablet_single_article_scrollview_description=0x7f030019;
+        public static final int test_layout_textview_at_runtime=0x7f03001a;
+        public static final int z_runtime_dark_large_body=0x7f03001b;
+        public static final int z_runtime_dark_large_button=0x7f03001c;
+        public static final int z_runtime_dark_large_title=0x7f03001d;
+        public static final int z_runtime_dark_medium_body=0x7f03001e;
+        public static final int z_runtime_dark_medium_button=0x7f03001f;
+        public static final int z_runtime_dark_medium_title=0x7f030020;
+        public static final int z_runtime_dark_small_body=0x7f030021;
+        public static final int z_runtime_dark_small_button=0x7f030022;
+        public static final int z_runtime_dark_small_title=0x7f030023;
+        public static final int z_runtime_light_large_body=0x7f030024;
+        public static final int z_runtime_light_large_button=0x7f030025;
+        public static final int z_runtime_light_large_title=0x7f030026;
+        public static final int z_runtime_light_medium_body=0x7f030027;
+        public static final int z_runtime_light_medium_button=0x7f030028;
+        public static final int z_runtime_light_medium_title=0x7f030029;
+        public static final int z_runtime_light_small_body=0x7f03002a;
+        public static final int z_runtime_light_small_button=0x7f03002b;
+        public static final int z_runtime_light_small_title=0x7f03002c;
     }
     public static final class menu {
-        public static final int activity_main=0x7f060000;
+        public static final int activity_article_overview=0x7f080000;
+        public static final int activity_full_screen_image=0x7f080001;
+        public static final int activity_layouts=0x7f080002;
+        public static final int activity_list_titles_and_begin_for_single_theme=0x7f080003;
+        public static final int activity_list_titles_article_for_single_theme=0x7f080004;
+        public static final int activity_main=0x7f080005;
+        public static final int activity_phone1=0x7f080006;
+        public static final int activity_phone3=0x7f080007;
+        public static final int activity_search_article=0x7f080008;
+        public static final int activity_search_articles=0x7f080009;
+        public static final int activity_single_article_search=0x7f08000a;
+        public static final int activity_tablet_single_article=0x7f08000b;
+        public static final int activity_two_articles_per_theme=0x7f08000c;
+        public static final int activityfonts=0x7f08000d;
+        public static final int activitypageturn=0x7f08000e;
+        public static final int activitysettings=0x7f08000f;
+        public static final int activitytablethorizontaloverview=0x7f080010;
+        public static final int activitythemes=0x7f080011;
+        public static final int settings=0x7f080012;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int hello_world=0x7f040001;
-        public static final int menu_settings=0x7f040002;
-        public static final int single_article=0x7f040004;
-        public static final int title_activity_main=0x7f040003;
+        public static final int ButtonOverview=0x7f050009;
+        public static final int ButtonSave=0x7f050004;
+        public static final int ButtonSearch=0x7f050006;
+        public static final int ButtonSearchAllArticles=0x7f05000a;
+        public static final int ButtonSearchArticles=0x7f050007;
+        public static final int ButtonTablet=0x7f050021;
+        public static final int ButtonTwoArticlesPerTheme=0x7f050023;
+        public static final int SetupPreferences=0x7f05000c;
+        public static final int Vul_woord_in=0x7f050008;
+        public static final int app_name=0x7f050000;
+        public static final int chkbinnenland=0x7f05000d;
+        public static final int chkbuitenland=0x7f05000e;
+        public static final int chkcultuur=0x7f05000f;
+        public static final int chkeconomie=0x7f050010;
+        public static final int chklife=0x7f050011;
+        public static final int choicefeedsactivity=0x7f050013;
+        public static final int choosefont=0x7f050015;
+        public static final int choosefontsbold=0x7f050018;
+        public static final int choosefontscolor=0x7f050017;
+        public static final int choosefontsitalic=0x7f050019;
+        public static final int choosefontssize=0x7f050016;
+        public static final int chooselayouts=0x7f050022;
+        public static final int choosepageturner=0x7f05001f;
+        public static final int choosetheme=0x7f05001c;
+        public static final int confirm=0x7f050012;
+        public static final int hello_world=0x7f050029;
+        public static final int image_article=0x7f05001b;
+        public static final int menu_settings=0x7f050001;
+        public static final int selectionRSSFeeds=0x7f05000b;
+        public static final int single_article=0x7f050003;
+        public static final int title_activity_fonts=0x7f05001a;
+        public static final int title_activity_full_screen_image=0x7f05002d;
+        public static final int title_activity_layouts=0x7f050027;
+        public static final int title_activity_list_titles_and_begin_for_single_theme=0x7f050024;
+        public static final int title_activity_list_titles_article_for_single_theme=0x7f050020;
+        public static final int title_activity_main=0x7f050002;
+        public static final int title_activity_page_turn=0x7f05001e;
+        public static final int title_activity_phone1=0x7f05002a;
+        public static final int title_activity_phone3=0x7f05002c;
+        public static final int title_activity_search_article=0x7f050005;
+        public static final int title_activity_settings=0x7f050014;
+        public static final int title_activity_single_article_search=0x7f05002b;
+        public static final int title_activity_tablet_horizontal_overview=0x7f050025;
+        public static final int title_activity_tablet_single_article=0x7f050026;
+        public static final int title_activity_themes=0x7f05001d;
+        public static final int title_activity_two_articles_per_theme=0x7f050028;
     }
     public static final class style {
-        public static final int AppTheme=0x7f050000;
+        public static final int AppTheme=0x7f070033;
+        public static final int PreferencesTheme=0x7f070020;
+        /**  Base application theme is the default theme. 
+         */
+        public static final int Theme=0x7f070016;
+        public static final int Theme_ButtonBlue=0x7f070023;
+        /**  ButtonTheme 
+         */
+        public static final int Theme_ButtonGray=0x7f070021;
+        public static final int Theme_ButtonRed=0x7f070025;
+        public static final int Theme_DefaultTheme=0x7f07001f;
+        /**  BackgroundTheme 
+ TODO testen default theme 
+         */
+        public static final int Theme_Gray=0x7f07001d;
+        public static final int Theme_ListviewBlue=0x7f070031;
+        /**  ListViewTheme 
+         */
+        public static final int Theme_ListviewGray=0x7f07002d;
+        public static final int Theme_ListviewRed=0x7f07002f;
+        public static final int Theme_Radial=0x7f07001e;
+        public static final int Theme_SpinnerBlue=0x7f07002b;
+        /**  SpinnerTheme 
+         */
+        public static final int Theme_SpinnerGray=0x7f070027;
+        public static final int Theme_SpinnerRed=0x7f070029;
+        public static final int Theme_darkLarge=0x7f07001c;
+        public static final int Theme_darkMedium=0x7f07001b;
+        public static final int Theme_darkSmall=0x7f07001a;
+        public static final int Theme_lightLarge=0x7f070019;
+        public static final int Theme_lightMedium=0x7f070018;
+        public static final int Theme_lightSmall=0x7f070017;
+        /**  default theme 
+         */
+        public static final int background_default=0x7f070015;
+        public static final int button_blue=0x7f070024;
+        public static final int button_gray=0x7f070022;
+        public static final int button_red=0x7f070026;
+        public static final int dark_large_body=0x7f070010;
+        public static final int dark_large_button=0x7f070011;
+        /**  dark large 
+         */
+        public static final int dark_large_title=0x7f07000f;
+        public static final int dark_medium_body=0x7f07000a;
+        public static final int dark_medium_button=0x7f07000b;
+        /**  dark medium 
+         */
+        public static final int dark_medium_title=0x7f070009;
+        public static final int dark_small_body=0x7f070004;
+        public static final int dark_small_button=0x7f070005;
+        /**  dark small 
+         */
+        public static final int dark_small_title=0x7f070003;
+        public static final int default_theme=0x7f070014;
+        /** 
+    <style name="large_title_text">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor"> #228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_body_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor"> #228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_button_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+ radioButtons 
+
+    <style name="small_radio_btn_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_radio_btn_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="default_radio_btn_text">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+    
+         */
+        public static final int gray_gradient=0x7f070012;
+        public static final int light_large_body=0x7f07000d;
+        public static final int light_large_button=0x7f07000e;
+        /**  light large 
+         */
+        public static final int light_large_title=0x7f07000c;
+        public static final int light_medium_body=0x7f070007;
+        public static final int light_medium_button=0x7f070008;
+        /**  light medium 
+         */
+        public static final int light_medium_title=0x7f070006;
+        public static final int light_small_body=0x7f070001;
+        public static final int light_small_button=0x7f070002;
+        /** 
+info: http://www.androidengineer.com/2010/06/using-themes-in-android-applications.html
+http://stackoverflow.com/questions/3241729/android-dynamically-change-style-at-runtime
+http://www.androidseeker.blogspot.in/2012/09/how-to-apply-new-theme-to-whole.html
+
+
+    
+ styles for fonts 
+ light small 
+         */
+        public static final int light_small_title=0x7f070000;
+        public static final int listview_blue=0x7f070032;
+        public static final int listview_gray=0x7f07002e;
+        public static final int listview_red=0x7f070030;
+        public static final int radial_gradient=0x7f070013;
+        public static final int spinner_blue=0x7f07002c;
+        public static final int spinner_gray=0x7f070028;
+        public static final int spinner_red=0x7f07002a;
     }
 }

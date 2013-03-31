@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutTabletSingleArticleScroll"
+    style="?backgroundTheme"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="?backgroundTheme"
+        android:id="@+id/linearLayoutTitleImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:baselineAligned="false"
+        android:weightSum="100" >
+
+        <LinearLayout
+            style="?backgroundTheme"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/articleImageTablet"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_article" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="?backgroundTheme"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/articleTitleTablet"
+                style="?textTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="?backgroundTheme"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayoutTitleImage"
+        android:weightSum="6" >
+
+        <LinearLayout
+            style="?backgroundTheme"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+
+            <ScrollView
+                android:id="@+id/scrollDescriptionTablet"
+                style="?backgroundTheme"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp" >
+
+                <TextView
+                    android:id="@+id/articleDescriptionTablet"
+                    style="?textBody"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            style="?backgroundTheme"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <services.ChannelScroller
+                android:id="@+id/channelTabletDescScroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <services.ArticleScroller
+        android:id="@+id/articleTabletDescScroll"
+        style="?textBody"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

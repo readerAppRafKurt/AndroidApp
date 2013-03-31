@@ -1,0 +1,43 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    style="?backgroundTheme">
+
+    <Button
+        android:id="@+id/btnSearchArticleById"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/ButtonSearch" 
+        style="?buttonTheme"/>
+
+    <EditText
+        android:id="@+id/editTextSearchArticleById"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnSearchArticleById"
+        android:ems="10"
+        android:hint="@string/Vul_woord_in"
+        android:inputType="text" 
+        android:background="#00000000"
+		style="?textBody">
+        <requestFocus />
+    </EditText>
+
+    <ListView
+        android:id="@+id/listFoundArticles"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextSearchArticleById" 
+        android:cacheColorHint="#00000000"
+        style="?listviewTheme">
+    </ListView>
+
+</RelativeLayout>

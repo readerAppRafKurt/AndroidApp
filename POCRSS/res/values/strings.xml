@@ -1,9 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">POCRSS</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Het Nieuwsblad</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Het Nieuwsblad artikels</string>
+    <string name="title_activity_main">Het Nieuwsblad</string>
     <string name="single_article">Artikel</string>
+    <string name="ButtonSave">Opslaan</string>
+    <string name="title_activity_search_article">Zoek artikel(s)</string>
+    <string name="ButtonSearch">Zoeken</string>
+    <string name="ButtonSearchArticles">Zoek artikel(s)</string>
+    <string name="Vul_woord_in">Vul woord in</string>
+    <string name="ButtonOverview">Artikels vandaag</string>
+    <string name="ButtonSearchAllArticles">Al de artikels</string>
+    <string name="selectionRSSFeeds">Selectie thema\'s</string>
+    <string name="SetupPreferences">Settings rss feeds</string>
+    <string name="chkbinnenland">Binnenland</string>
+    <string name="chkbuitenland">Buitenland</string>
+    <string name="chkcultuur">Cultuur</string>
+    <string name="chkeconomie">Economie</string>
+    <string name="chklife">Lifestyle</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="choicefeedsactivity">Selectie thema\'s</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="choosefont">Kies een lettertype</string>
+    <string name="choosefontssize">Kies een lettergrootte</string>
+    <string name="choosefontscolor">Kies een letterkleur</string>
+    <string name="choosefontsbold">Vetgedrukt</string>
+    <string name="choosefontsitalic">Schuin</string>
+    <string name="title_activity_fonts">Kies een lettertype</string>
+    <string name="image_article">Foto artikel</string>
+    <string name="choosetheme">Kies een theme</string>
+    <string name="title_activity_themes">Kies een theme</string>
+    <string name="title_activity_page_turn">Bladereffecten</string>
+    <string name="choosepageturner">Kies een bladereffect</string>
+    <string name="title_activity_list_titles_article_for_single_theme">artikels</string>
+    <string name="ButtonTablet">Tablet</string>
+    <string name="chooselayouts">Kies een layout</string>
+    <string name="ButtonTwoArticlesPerTheme">layout 2 artikels per theme</string>
+
+    <string-array name="fonts">
+        <item>light small</item>
+        <item>dark small</item>
+        <item>light medium</item>
+        <item>dark medium</item>
+        <item>light large</item>
+        <item>dark large</item>
+    </string-array>
+    <string-array name="themes">
+        <item>Grijs</item>
+        <item>Blauw</item>
+        <item>Rood</item>
+    </string-array>
+    <string-array name="page_turns">
+        <item>Vegen</item>
+        <item>Bladeren</item>
+    </string-array>
+    <string-array name="layouts">
+        <item>Phone 1</item>
+        <item>Phone 2</item>
+        <item>Phone 3</item>
+        <item>Tablet 1</item>
+        <item>Tablet 2</item>
+    </string-array>
+    <string-array name="settings">
+        <item>Fonts</item>
+        <item>Theme</item>
+        <item>Layouts</item>
+        <item>Effecten</item>
+    </string-array>
+
+    <string name="title_activity_list_titles_and_begin_for_single_theme">Artikels</string>
+    <string name="title_activity_tablet_horizontal_overview">Het Nieuwsblad</string>
+    <string name="title_activity_tablet_single_article">Het Nieuwsblad</string>
+    <string name="title_activity_layouts">Kies een layout</string>
+    <string name="title_activity_two_articles_per_theme">Het Nieuwsblad</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_phone1">Het Nieuwsblad</string>
+    <string name="title_activity_single_article_search">Het Nieuwsblad</string>
+    <string name="title_activity_phone3">Het Nieuwsblad</string>
+    <string name="title_activity_full_screen_image">Het Nieuwsblad</string>
 
 </resources>

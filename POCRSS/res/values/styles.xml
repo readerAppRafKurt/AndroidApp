@@ -1,5 +1,361 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <!--
+info: http://www.androidengineer.com/2010/06/using-themes-in-android-applications.html
+http://stackoverflow.com/questions/3241729/android-dynamically-change-style-at-runtime
+http://www.androidseeker.blogspot.in/2012/09/how-to-apply-new-theme-to-whole.html
+    -->
+
+
+    <!-- styles for fonts -->
+    <!-- light small -->
+    <style name="light_small_title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="light_small_body">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="light_small_button">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <!-- dark small -->
+    <style name="dark_small_title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="dark_small_body">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="dark_small_button">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <!-- light medium -->
+    <style name="light_medium_title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="light_medium_body">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="light_medium_button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- dark medium -->
+    <style name="dark_medium_title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="dark_medium_body">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="dark_medium_button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- light large -->
+    <style name="light_large_title">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="light_large_body">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="light_large_button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <!-- dark large -->
+    <style name="dark_large_title">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="dark_large_body">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dip</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="dark_large_button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <!--
+    <style name="large_title_text">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor"> #228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_body_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor"> #228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_button_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    -->
+
+
+    <!-- radioButtons -->
+    <!--
+    <style name="small_radio_btn_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="large_radio_btn_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#228B22</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+
+    <style name="default_radio_btn_text">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor"> #228B22 </item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+    -->
+
+    <style name="gray_gradient">
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:textColor">#111111</item>
+    </style>
+
+    <style name="radial_gradient">
+        <item name="android:background">@color/light_blue</item>
+    </style>
+
+    <style name="default_theme">
+        <item name="android:background">@color/light_red</item>
+    </style>
+
+    <!-- default theme -->
+    <style name="background_default">
+        <item name="android:background"> #ef5c40</item>
+    </style>
+
+    <!-- Base application theme is the default theme. -->
+    <style name="Theme" parent="android:Theme"></style>
+
+    <style name="Theme.lightSmall">
+        <item name="textTitle">@style/light_small_title</item>
+        <item name="textBody">@style/light_small_body</item>
+        <item name="buttonText">@style/light_small_button</item>
+    </style>
+
+    <style name="Theme.lightMedium">
+        <item name="textTitle">@style/light_medium_title</item>
+        <item name="textBody">@style/light_medium_body</item>
+        <item name="buttonText">@style/light_medium_button</item>
+    </style>
+
+    <style name="Theme.lightLarge">
+        <item name="textTitle">@style/light_large_title</item>
+        <item name="textBody">@style/light_large_body</item>
+        <item name="buttonText">@style/light_large_button</item>
+    </style>
+
+    <style name="Theme.darkSmall">
+        <item name="textTitle">@style/dark_small_title</item>
+        <item name="textBody">@style/dark_small_body</item>
+        <item name="buttonText">@style/dark_small_button</item>
+    </style>
+
+    <style name="Theme.darkMedium">
+        <item name="textTitle">@style/dark_medium_title</item>
+        <item name="textBody">@style/dark_medium_body</item>
+        <item name="buttonText">@style/dark_medium_button</item>
+    </style>
+
+    <style name="Theme.darkLarge">
+        <item name="textTitle">@style/dark_large_title</item>
+        <item name="textBody">@style/dark_large_body</item>
+        <item name="buttonText">@style/dark_large_button</item>
+    </style>
+
+    <!-- BackgroundTheme -->
+    <!-- TODO testen default theme -->
+    <style name="Theme.Gray">
+        <item name="backgroundTheme">@style/gray_gradient</item>
+        <item name="buttonTheme">@style/button_gray</item>
+        <item name="listviewTheme">@style/listview_gray</item>
+        <item name="spinnerTheme">@style/spinner_gray</item>
+    </style>
+
+    <style name="Theme.Radial">
+        <item name="backgroundTheme">@style/radial_gradient</item>
+    </style>
+
+    <style name="Theme.DefaultTheme">
+        <item name="backgroundTheme">@style/background_default</item>
+    </style>
+
+    <style name="PreferencesTheme" parent="android:Theme.Light">
+        <item name="android:background">#FFEAEAEA</item>
+    </style>
+
+    <!-- ButtonTheme -->
+    <style name="Theme.ButtonGray">
+        <item name="buttonTheme">@style/button_gray</item>
+    </style>
+
+    <style name="button_gray" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_gray_theme</item>
+    </style>
+
+    <style name="Theme.ButtonBlue">
+        <item name="buttonTheme">@style/button_blue</item>
+    </style>
+
+    <style name="button_blue" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_blue_theme</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="Theme.ButtonRed">
+        <item name="buttonTheme">@style/button_red</item>
+    </style>
+
+    <style name="button_red" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_red_theme</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <!-- SpinnerTheme -->
+    <style name="Theme.SpinnerGray">
+        <item name="spinnerTheme">@style/spinner_gray</item>
+    </style>
+
+    <style name="spinner_gray" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">#111111</item>
+    </style>
+
+    <style name="Theme.SpinnerRed">
+        <item name="spinnerTheme">@style/spinner_red</item>
+    </style>
+
+    <style name="spinner_red" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="Theme.SpinnerBlue">
+        <item name="spinnerTheme">@style/spinner_blue</item>
+    </style>
+
+    <style name="spinner_blue" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <!-- ListViewTheme -->
+    <style name="Theme.ListviewGray">
+        <item name="listviewTheme">@style/listview_gray</item>
+    </style>
+
+    <style name="listview_gray" parent="@android:style/Widget.ListView">
+        <item name="android:background">@drawable/listview_gray_theme</item>
+        <item name="android:textColor">#111111</item>
+    </style>
+
+    <style name="Theme.ListviewRed">
+        <item name="listviewTheme">@style/listview_red</item>
+    </style>
+
+    <style name="listview_red" parent="@android:style/Widget.ListView">
+        <item name="android:background">@drawable/listview_red_theme</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="Theme.ListviewBlue">
+        <item name="listviewTheme">@style/listview_blue</item>
+    </style>
+
+    <style name="listview_blue" parent="@android:style/Widget.ListView">
+        <item name="android:background">@drawable/listview_blue_theme</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
 
 </resources>

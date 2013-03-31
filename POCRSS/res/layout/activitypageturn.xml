@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageTurnActivity" 
+    style="?backgroundTheme">
+
+    <TextView
+        android:id="@+id/txvspinnerpageturner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choosepageturner" 
+        style="?backgroundTheme"/>
+
+    <Spinner
+        android:id="@+id/spinnerpageturner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txvspinnerpageturner"
+        android:entries="@array/page_turns"
+        android:prompt="@string/choosepageturner" 
+        style="?spinnerTheme"/>
+
+    <Button
+        android:id="@+id/btnConfirmSettingPageTurner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/confirm" 
+        android:layout_marginBottom="5dip"
+        style="?buttonTheme"/>
+
+</RelativeLayout>
