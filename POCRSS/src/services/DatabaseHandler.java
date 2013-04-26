@@ -1,10 +1,8 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import classes.Article;
-import classes.ArticleComparator;
 import classes.Channel;
 import classes.ChannelType;
 import android.content.ContentValues;
@@ -604,18 +602,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values3.put(KEY_LAYOUT_ID, "Phone 3");
 		values3.put(KEY_LAYOUT_SELECTED,false);
 		db.insert(TABLE_LAYOUT, null, values3);
-
-		//Tablet 1
+		
+		//Phone 4
 		ContentValues values4 = new ContentValues();
-		values4.put(KEY_LAYOUT_ID, "Tablet 1");
+		values4.put(KEY_LAYOUT_ID, "Phone 4");
 		values4.put(KEY_LAYOUT_SELECTED,false);
 		db.insert(TABLE_LAYOUT, null, values4);
-		
-		//Tablet 2
+
+		//Tablet 1
 		ContentValues values5 = new ContentValues();
-		values5.put(KEY_LAYOUT_ID, "Tablet 2");
+		values5.put(KEY_LAYOUT_ID, "Tablet 1");
 		values5.put(KEY_LAYOUT_SELECTED,false);
 		db.insert(TABLE_LAYOUT, null, values5);
+		
+		//Tablet 2
+		ContentValues values6 = new ContentValues();
+		values6.put(KEY_LAYOUT_ID, "Tablet 2");
+		values6.put(KEY_LAYOUT_SELECTED,false);
+		db.insert(TABLE_LAYOUT, null, values6);
 
 	}
 	

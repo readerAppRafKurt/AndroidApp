@@ -2,38 +2,41 @@ package activities;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import services.ActivityDao;
-import services.DatabaseHandler;
 import classes.Article;
+import classes.AsyncTaskUpdateDbWithoutProgressBar;
 import classes.Channel;
 import classes.Utils;
-
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ArticleDao;
+import dao.ChannelDao;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class RSSFeedsActivity extends Activity {
 
 	private CheckBox chkBinnenland, chkBuitenland, chkCultuur, chkEconomie,
 			chkLife;
-	private DatabaseHandler db;
+	private TextView tvTitleBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.choicefeedsactivity);
-		
-		//register as active 
+
+		// register as active
 		ActivityDao.addActivity(this);
 
 		// set the checkboxes for the different channels by reading the database
@@ -44,10 +47,12 @@ public class RSSFeedsActivity extends Activity {
 		chkEconomie = (CheckBox) findViewById(R.id.chkEconomie);
 		chkLife = (CheckBox) findViewById(R.id.chkLife);
 
-		// set the db
-		db = new DatabaseHandler(this);
+		// set new content titleBar
+		tvTitleBar = (TextView) findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(R.string.selectionRSSFeeds);
+
 		// get the selected channels from the database
-		List<Channel> channels = db.getAllSelectedChannels();
+		List<Channel> channels = ChannelDao.getAllSelectedChannels();
 
 		// toggle the selected checkboxes
 		for (int i = 0; i < channels.size(); i++) {
@@ -79,23 +84,25 @@ public class RSSFeedsActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					// activate channel in db
-					Channel channel = db.getChannelById(1);
+					Channel channel = ChannelDao.getChannelById(1);
 					channel.setSelected(true);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 				} else {
 					// deactivate channel in db
-					Channel channel = db.getChannelById(1);
+					Channel channel = ChannelDao.getChannelById(1);
 					channel.setSelected(false);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 
-					
-					//TODO put this in background
+					// TODO put this in background
 					// remove all the articles for this channel in the database
 					List<Article> articles = new ArrayList<Article>();
-					articles = db.getArticlesForChannel(channel);
-
-					for (Article article : articles) {
-						db.removeArticle(article);
+					articles = ChannelDao.getArticlesForChannel(channel);
+					// only remove the articles if there're articles in the db
+					// for that rss feed
+					if (articles != null && articles.size() > 1) {
+						for (Article article : articles) {
+							ArticleDao.removeArticle(article);
+						}
 					}
 				}
 			}
@@ -106,21 +113,24 @@ public class RSSFeedsActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					// activate channel in db
-					Channel channel = db.getChannelById(2);
+					Channel channel = ChannelDao.getChannelById(2);
 					channel.setSelected(true);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 				} else {
 					// deactivate channel in db
-					Channel channel = db.getChannelById(2);
+					Channel channel = ChannelDao.getChannelById(2);
 					channel.setSelected(false);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 
 					// remove all the articles for this channel in the database
 					List<Article> articles = new ArrayList<Article>();
-					articles = db.getArticlesForChannel(channel);
-
-					for (Article article : articles) {
-						db.removeArticle(article);
+					articles = ChannelDao.getArticlesForChannel(channel);
+					// only remove the articles if there're articles in the db
+					// for that rss feed
+					if (articles != null && articles.size() > 1) {
+						for (Article article : articles) {
+							ArticleDao.removeArticle(article);
+						}
 					}
 				}
 			}
@@ -131,21 +141,25 @@ public class RSSFeedsActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					// activate channel in db
-					Channel channel = db.getChannelById(3);
+					Channel channel = ChannelDao.getChannelById(3);
 					channel.setSelected(true);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 				} else {
 					// deactivate channel in db
-					Channel channel = db.getChannelById(3);
+					Channel channel = ChannelDao.getChannelById(3);
 					channel.setSelected(false);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 
 					// remove all the articles for this channel in the database
 					List<Article> articles = new ArrayList<Article>();
-					articles = db.getArticlesForChannel(channel);
+					articles = ChannelDao.getArticlesForChannel(channel);
+					// only remove the articles if there're articles in the db
+					// for that rss feed
+					if (articles != null && articles.size() > 1) {
 
-					for (Article article : articles) {
-						db.removeArticle(article);
+						for (Article article : articles) {
+							ArticleDao.removeArticle(article);
+						}
 					}
 				}
 			}
@@ -156,21 +170,24 @@ public class RSSFeedsActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					// activate channel in db
-					Channel channel = db.getChannelById(4);
+					Channel channel = ChannelDao.getChannelById(4);
 					channel.setSelected(true);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 				} else {
 					// deactivate channel in db
-					Channel channel = db.getChannelById(4);
+					Channel channel = ChannelDao.getChannelById(4);
 					channel.setSelected(false);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 
 					// remove all the articles for this channel in the database
 					List<Article> articles = new ArrayList<Article>();
-					articles = db.getArticlesForChannel(channel);
-
-					for (Article article : articles) {
-						db.removeArticle(article);
+					articles = ChannelDao.getArticlesForChannel(channel);
+					// only remove the articles if there're articles in the db
+					// for that rss feed
+					if (articles != null && articles.size() > 1) {
+						for (Article article : articles) {
+							ArticleDao.removeArticle(article);
+						}
 					}
 				}
 			}
@@ -181,21 +198,24 @@ public class RSSFeedsActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					// activate channel in db
-					Channel channel = db.getChannelById(5);
+					Channel channel = ChannelDao.getChannelById(5);
 					channel.setSelected(true);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 				} else {
 					// deactivate channel in db
-					Channel channel = db.getChannelById(5);
+					Channel channel = ChannelDao.getChannelById(5);
 					channel.setSelected(false);
-					db.updateChannel(channel);
+					ChannelDao.updateChannel(channel);
 
 					// remove all the articles for this channel in the database
 					List<Article> articles = new ArrayList<Article>();
-					articles = db.getArticlesForChannel(channel);
-
-					for (Article article : articles) {
-						db.removeArticle(article);
+					articles = ChannelDao.getArticlesForChannel(channel);
+					// only remove the articles if there're articles in the db
+					// for that rss feed
+					if (articles != null && articles.size() > 1) {
+						for (Article article : articles) {
+							ArticleDao.removeArticle(article);
+						}
 					}
 				}
 			}
@@ -210,8 +230,11 @@ public class RSSFeedsActivity extends Activity {
 				&& !chkCultuur.isChecked() && !chkEconomie.isChecked()
 				&& !chkLife.isChecked()) {
 			this.alertMessageNoThemeSelected(RSSFeedsActivity.this,
-					"Keuze feed", "Je moet minstens 1 feed kiezen", true);
+					"Keuze feed", "Je moet minstens 1 RSS feed kiezen", true);
 		} else {
+			// start backgroundActivity to update db
+			// start background service
+			new AsyncTaskUpdateDbWithoutProgressBar(getBaseContext(),RSSFeedsActivity.this).execute();
 			super.onBackPressed();
 		}
 	}
@@ -233,20 +256,4 @@ public class RSSFeedsActivity extends Activity {
 		// Showing Alert Message
 		alertDialog.show();
 	}
-	
-	private class AsyncTaskRemoveArticlesFromDb extends AsyncTask<String, Void, Void> {
-
-		@Override
-		protected Void doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
-			//remove articles from themes that are deselected
-			
-			//insert articles from themes that are selected
-			return null;
-		}
-		
-		
-		
-	}
-	
 }

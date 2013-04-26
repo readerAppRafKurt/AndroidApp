@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import classes.AsyncTaskLoadXML_;
 import classes.Channel;
+import dao.ArticleDao;
 
 public class UploadXML {
 
@@ -40,7 +41,7 @@ public class UploadXML {
 				// get active channels
 				List<Channel> channels = db.getAllSelectedChannels();
 
-				// TODO progressbar in elke activity zetten
+				//progressbar in elke activity zetten
 				//enkel in de acitvities van de artikels zetten
 				//daar zit de gebruiker het langst
 				// set progressbar to see progress download XML files, but do

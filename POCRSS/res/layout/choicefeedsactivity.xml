@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?backgroundTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    style="?backgroundTheme">
-    
-        <CheckBox
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_bar_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/custom_title_bar" />
+
+    <CheckBox
         android:id="@+id/chkBinnenland"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title_bar_header"
         android:text="@string/chkbinnenland" />
-        
-        <CheckBox
+
+    <CheckBox
         android:id="@+id/chkBuitenland"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/chkBinnenland"
         android:text="@string/chkbuitenland" />
-        
-        <CheckBox
+
+    <CheckBox
         android:id="@+id/chkCultuur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/chkBuitenland"
         android:text="@string/chkcultuur" />
-        
-        <CheckBox
+
+    <CheckBox
         android:id="@+id/chkEconomie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/chkCultuur"
         android:text="@string/chkeconomie" />
-       	
-       	<CheckBox
+
+    <CheckBox
         android:id="@+id/chkLife"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/chkEconomie"
         android:text="@string/chklife" />
+
 </RelativeLayout>

@@ -1,9 +1,10 @@
 package activities;
 
-import services.ActivityDao;
-import services.ImageDao;
 import classes.Utils;
 import com.example.pocrss.R;
+
+import dao.ActivityDao;
+import dao.ImageDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

@@ -1,15 +1,19 @@
 package activities;
 
 import java.util.List;
-import services.ChannelScroller;
-import services.DatabaseHandler;
-import services.ArticleScroller;
-import services.ImageDao;
-import services.SwipeGesture;
+import viewElements.ArticleScroller;
+import viewElements.ChannelScroller;
+import viewElements.ImageListener;
+import viewElements.SwipeGesture;
 import classes.Article;
 import classes.Channel;
 import classes.Utils;
 import com.example.pocrss.R;
+
+import dao.ArticleDao;
+import dao.ChannelDao;
+import dao.ImageDao;
+import dao.LayoutDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +22,7 @@ import android.text.Html;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -28,10 +33,13 @@ public class TabletSingleArticleActivity extends Activity {
 	TextView articleTitleTablet, articleDescriptionTablet;
 	ImageView articleImageTablet, articleImageTabletTest;
 	LinearLayout rssfeedschoice;
+	TextView tvTitleBar;
 
 	ArticleScroller articleTabletScroller;
 	ChannelScroller channelTabletScroller;
-	DatabaseHandler db;
+	//DatabaseHandler db;
+	
+	public Channel channel;
 
 	// the id of the previous and next article
 	private Article previousArticle, nextArticle;
@@ -39,24 +47,38 @@ public class TabletSingleArticleActivity extends Activity {
 	// gesture detector
 	private GestureDetector gestureDetector;
 
+	@SuppressWarnings({ "deprecation", "unused" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 
 		// set db
-		db = new DatabaseHandler(this);
+		//db = new DatabaseHandler(this);
 
 		// get active layout
-		String activeLayout = db.getActiveLayout();
+		String activeLayout = LayoutDao.getActiveLayout(this);
+		
+		// set intent
+		Intent in = getIntent();
+
+		// start test swipen
+
+		// get article and channel id from intent
+		channel = ChannelDao.getChannelById(Integer.parseInt(in
+				.getStringExtra("channel_id")));
+		Article articleNow = ArticleDao.getArticleById(Integer.parseInt(in
+				.getStringExtra("article_id")));
 
 		// set different xml dependent on the active/selected layout
 		if (activeLayout.equals("Tablet 2")) {
 			setContentView(R.layout.tablet_single_article_scrollview_description);
-			articleTabletScroller = (ArticleScroller) findViewById(R.id.articleTabletDescScroll);	
-			channelTabletScroller = (ChannelScroller) findViewById(R.id.channelTabletDescScroll);
-			
+			articleTabletScroller = (ArticleScroller) findViewById(R.id.articleTabletDescScroll);
+			//articleTabletScroller.scrollTo(160, 0);
+			channelTabletScroller = (ChannelScroller) findViewById(R.id.channelTabletDescScroll);		
 		} else {
 			// default layout for tablets
 			setContentView(R.layout.activity_tablet_single_article);
@@ -64,18 +86,11 @@ public class TabletSingleArticleActivity extends Activity {
 			channelTabletScroller = (ChannelScroller) findViewById(R.id.channelTabletInSingleArticleScroller);
 		}
 
-		// set intent
-		Intent in = getIntent();
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(channel.getDescription());
 
-		// start test swipen
-
-		// get article and channel id from intent
-		Channel channel = db.getChannelById(Integer.parseInt(in
-				.getStringExtra("channel_id")));
-		Article articleNow = db.getArticle(Integer.parseInt(in
-				.getStringExtra("article_id")));
-
-		List<Article> articlesInDb = db.getArticlesForChannel(channel);
+		List<Article> articlesInDb = ChannelDao.getArticlesForChannel(channel);
 
 		int positie = articlesInDb.indexOf(articleNow);
 
@@ -145,6 +160,7 @@ public class TabletSingleArticleActivity extends Activity {
 			Bitmap articleImage = ImageDao
 					.getImage(getBaseContext(), enclosure);
 			articleImageTablet.setImageBitmap(articleImage);
+			articleImageTablet.setOnClickListener(new ImageListener(enclosure));
 		}
 	}
 

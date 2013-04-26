@@ -1,23 +1,30 @@
 package activities;
 
-import services.ActivityDao;
 
 import classes.Utils;
 
 import com.example.pocrss.R;
+
+import dao.ActivityDao;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SettingsActivity extends ListActivity {
+	
+	private TextView tvTitleBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
@@ -25,6 +32,10 @@ public class SettingsActivity extends ListActivity {
 		
 		//register as active 
 		ActivityDao.addActivity(this);
+		
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(R.string.menu_settings);
 
 		// fill the list with different settings
 		// set spinner for the layouts

@@ -1,13 +1,13 @@
 package activities;
 
 import java.util.List;
-import services.ActivityDao;
-import services.DatabaseHandler;
-import services.FontDao;
-import services.ThemeDao;
 import classes.Channel;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ChannelDao;
+import dao.FontDao;
+import dao.ThemeDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,43 +26,48 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class Phone1Activity extends Activity {
 
-	DatabaseHandler db;
-	
+	//DatabaseHandler db;
+
 	int[] activeFont;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		// set the database
-		db = new DatabaseHandler(Phone1Activity.this);
-		FontDao.setActiveFont(getBaseContext());
-		FontDao.setUtilsFonts(db.getActiveFont());
-		ThemeDao.setUtilsTheme(db.getActiveTheme());
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+		FontDao.setActiveFont(getBaseContext());
+		FontDao.setUtilsFonts(FontDao.getActiveFont());
+		ThemeDao.setUtilsTheme(ThemeDao.getActiveTheme());
 		Utils.setThemeToActivity(this);
-		super.onCreate(savedInstanceState);
+		
+		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.activity_phone1);
 		
-		//get active font
-		activeFont=FontDao.getLayoutXML();
+		// get active font
+		activeFont = FontDao.getLayoutXML();
 
 		// register activity as active
 		ActivityDao.addActivity(this);
-		
-		 // setup for button search articles and button overview articles
-		 Button btnSearch = (Button) findViewById(R.id.btnSearchArticles);
-		 btnSearch.setOnClickListener(new OnClickListener() {
-		 
-		 public void onClick(View arg0) {
-		 Intent intent = new Intent(Phone1Activity.this,
-		 SearchArticleActivity.class);
-		 Phone1Activity.this.startActivity(intent); } });
-		 
+
+		// setup for button search articles and button overview articles
+		// Button btnSearch = (Button) findViewById(R.id.btnSearchArticles);
+		Button btnSearch = FontDao
+				.modifiedButton((Button) findViewById(R.id.btnSearchArticles),
+						getBaseContext());
+
+		btnSearch.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Intent intent = new Intent(Phone1Activity.this,
+						SearchArticleActivity.class);
+				Phone1Activity.this.startActivity(intent);
+			}
+		});
 
 		// get all active channels
 		// info
 		// http://stackoverflow.com/questions/5763366/how-to-create-multiple-buttons-at-runtime-android
-		List<Channel> activeChannels = db.getAllSelectedChannels();
+		List<Channel> activeChannels = ChannelDao.getAllSelectedChannels();
 
 		LinearLayout internLayout = (LinearLayout) findViewById(R.id.layoutInternPhone1);
 		// get the position of the screen 1=portrait 2=landscape
@@ -78,11 +84,12 @@ public class Phone1Activity extends Activity {
 
 		for (Channel channel : activeChannels) {
 			// for each active channel create a clickable textview
-			TextView tv = (TextView)getLayoutInflater().inflate(activeFont[0], null);
+			TextView tv = (TextView) getLayoutInflater().inflate(activeFont[0],
+					null);
 			tv.setText(channel.getDescription().substring(15));
 			tv.setTag(Integer.toString(channel.get_id()));
 
-			String activeThemeColor = db.getActiveTheme();
+			String activeThemeColor = ThemeDao.getActiveTheme();
 
 			if (activeThemeColor.equalsIgnoreCase("grijs")) {
 				tv.setBackgroundColor(Color.parseColor("#666666"));
@@ -109,7 +116,7 @@ public class Phone1Activity extends Activity {
 					Intent intent = new Intent(Phone1Activity.this,
 							ListTitlesAndBeginForSingleThemeActivity.class);
 
-					String sTag=(String) v.getTag();
+					String sTag = (String) v.getTag();
 
 					intent.putExtra("channelId", sTag);
 					Phone1Activity.this.startActivity(intent);
@@ -121,8 +128,8 @@ public class Phone1Activity extends Activity {
 
 		}
 		// end textviews at runtime
-	}	
-		
+	}
+
 	// setup for the general preferences of the app.
 	// users can modify their font, layout, theme and effects
 	// users can choose out of different article channels
@@ -144,8 +151,7 @@ public class Phone1Activity extends Activity {
 
 		case R.id.choiceFeedsMenu:
 			// setup new activity and intent to setup the selected feeds
-			Intent i = new Intent(Phone1Activity.this,
-					RSSFeedsActivity.class);
+			Intent i = new Intent(Phone1Activity.this, RSSFeedsActivity.class);
 			startActivity(i);
 
 			break;
@@ -161,10 +167,10 @@ public class Phone1Activity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		
-		//empty the active activities
+
+		// empty the active activities
 		ActivityDao.finishAllActivities();
-		
+
 		super.onBackPressed();
 	}
 }

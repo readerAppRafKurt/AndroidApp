@@ -1,23 +1,24 @@
 package activities;
 
 import java.util.List;
-import services.DatabaseHandler;
-import services.ImageDao;
-import services.SwipeGesture;
+import viewElements.ImageListener;
+import viewElements.SwipeGesture;
 import classes.Article;
 import classes.Channel;
-import classes.ImageListener;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ArticleDao;
+import dao.ChannelDao;
+import dao.ImageDao;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -33,9 +34,6 @@ public class PhoneSingleArticleActivity extends Activity {
 	static final String KEY_ENCLOSURE = "enclosure";
 	static final String FOREIGN_KEY_CHANNEL = "channel_id";
 
-	// database
-	DatabaseHandler db;
-
 	Intent in;
 
 	ImageView imageArticle;
@@ -45,35 +43,37 @@ public class PhoneSingleArticleActivity extends Activity {
 
 	// the id of the previous and next article
 	private Article previousArticle, nextArticle;
+	
+	private TextView tvTitleBar;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_list_item);
-
-		// initialize database
-		db = new DatabaseHandler(this);
-
-		// set the custom theme
-		//Utils.setThemeToActivity(this);
-
+		
 		// getting intent data
 		in = getIntent();
 
-		Channel channel = db.getChannelById(Integer.parseInt(in
+		Channel channel = ChannelDao.getChannelById(Integer.parseInt(in
 				.getStringExtra(FOREIGN_KEY_CHANNEL)));
 		
 		
 		//set titleBar
-		PhoneSingleArticleActivity.this.setTitle(channel.getDescription());
+		//PhoneSingleArticleActivity.this.setTitle(channel.getDescription());
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(channel.getDescription());
 		
-		Article articleNow = db.getArticle(Integer.parseInt(in
+		Article articleNow = ArticleDao.getArticleById(Integer.parseInt(in
 				.getStringExtra(KEY_ID)));
-
-		List<Article> articlesInDb = db.getArticlesForChannel(channel);
-
+				
+		List<Article> articlesInDb = ChannelDao.getArticlesForChannel(channel);
+				
 		int positie = articlesInDb.indexOf(articleNow);
 
 		// set the previous and next article
@@ -127,7 +127,6 @@ public class PhoneSingleArticleActivity extends Activity {
 			Bitmap articleImage = ImageDao
 					.getImage(getBaseContext(), enclosure);
 			imageArticle.setImageBitmap(articleImage);
-			Log.w("test","in naar imageListener");
 			imageArticle.setOnClickListener(new ImageListener(enclosure));
 		}
 	}

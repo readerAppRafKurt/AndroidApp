@@ -1,14 +1,17 @@
 package activities;
 
-import services.ActivityDao;
-import services.ImageDao;
+import viewElements.ImageListener;
 import classes.Utils;
 import com.example.pocrss.R;
+
+import dao.ActivityDao;
+import dao.ImageDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.Html;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,9 +29,14 @@ public class SingleArticleSearchActivity extends Activity {
 
 		Intent in;
 		ImageView imageArticle;
+		@SuppressWarnings("unused")
+		private TextView tvTitleBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_list_item);
@@ -65,6 +73,7 @@ public class SingleArticleSearchActivity extends Activity {
 			Bitmap articleImage = ImageDao
 					.getImage(getBaseContext(), enclosure);
 			imageArticle.setImageBitmap(articleImage);
+			imageArticle.setOnClickListener(new ImageListener(enclosure));
 		}
 	}
 }

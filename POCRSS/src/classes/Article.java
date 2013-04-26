@@ -2,8 +2,8 @@ package classes;
 
 import java.text.DateFormat;
 import java.util.Date;
-
 import android.net.ParseException;
+import android.text.format.DateUtils;
 
 public class Article {
 
@@ -25,18 +25,18 @@ public class Article {
 		this.title = title;
 		this.link = link;
 		this.description = description;
-		//needed to use the setPubDate for the formatter
+		// needed to use the setPubDate for the formatter
 		this.setPubDate(pubDate);
 		this.enclosure = enclosure;
 		this.channel = channel;
 	}
 
-	public Article(String title, String link, String description, String pubDate,
-			String enclosure, Channel channel) {
+	public Article(String title, String link, String description,
+			String pubDate, String enclosure, Channel channel) {
 		this.title = title;
 		this.link = link;
 		this.description = description;
-		//needed to use the setPubDate for the formatter
+		// needed to use the setPubDate for the formatter
 		this.setPubDate(pubDate);
 		this.enclosure = enclosure;
 		this.channel = channel;
@@ -77,9 +77,9 @@ public class Article {
 	public String getPubDate() {
 
 		Date d = this.pubDate;
-		//DateFormat dateFormat = new SimpleDateFormat(
-		//		"EEE MMM d HH:mm:ss z yyyy", Locale.US);
-		DateFormat dateFormat=DateFormatter.getDf();
+		// DateFormat dateFormat = new SimpleDateFormat(
+		// "EEE MMM d HH:mm:ss z yyyy", Locale.US);
+		DateFormat dateFormat = DateFormatter.getDf();
 
 		String date = dateFormat.format(d);
 		return date;
@@ -87,11 +87,11 @@ public class Article {
 	}
 
 	public void setPubDate(String pubDate) {
-		
-		//Tue Feb 12 18:13:00 GMT+01:00 2013
-		//DateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy",
-		//		Locale.US);
-		DateFormat df=DateFormatter.getDf();
+
+		// Tue Feb 12 18:13:00 GMT+01:00 2013
+		// DateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy",
+		// Locale.US);
+		DateFormat df = DateFormatter.getDf();
 		Date defaultStartPubDate = new Date();
 		try {
 			Date _pubDate = (Date) df.parse(pubDate);
@@ -104,6 +104,28 @@ public class Article {
 		} catch (java.text.ParseException e) {
 			this.pubDate = defaultStartPubDate;
 		}
+	}
+
+	public String getDescriptionShortWithoutTags() {
+
+		String stringToReturn = "";
+
+		// the next &lt;/b>&lt;br>&lt;p> have to be replaced by nothing
+		String descriptionWithoutTags = this.description.replace("&lt;", "")
+				.replace("/b>", "").replace("</P>", "").replace("</p>", "")
+				.replace("br>", "").replace("p>", "").replace("<b>", "")
+				.replace("<P>", "").replace("I>", "").replace("/I>", "")
+				.replace("<I>", "").replace(">", "").replace("<", "");
+
+		// set textview article with the first 200 characters
+		if (descriptionWithoutTags.length() > 200) {
+			stringToReturn = descriptionWithoutTags.substring(0, 200);
+		} else {
+			stringToReturn = descriptionWithoutTags;
+		}
+
+		return stringToReturn;
+
 	}
 
 	public Date _getPubDate() {
@@ -128,6 +150,16 @@ public class Article {
 
 	public void setChannel(Channel channel) {
 		this.channel = channel;
+	}
+	
+	public String getTimeAgo() {	
+		// create times ago
+		Date d = new Date();
+		String timeAgo = (String) DateUtils.getRelativeTimeSpanString(this
+				._getPubDate().getTime(), d.getTime(), 0L,
+				DateUtils.FORMAT_ABBREV_ALL);
+		
+		return timeAgo;
 	}
 
 	@Override
@@ -162,8 +194,5 @@ public class Article {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
-	
-	
-
 
 }

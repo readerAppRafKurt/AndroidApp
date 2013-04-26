@@ -1,27 +1,31 @@
 package activities;
 
-import services.ActivityDao;
-import services.DatabaseHandler;
-import services.FontDao;
 import classes.Utils;
 import com.example.pocrss.R;
+
+import dao.ActivityDao;
+import dao.FontDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class FontsActivity extends Activity {
 
 	private Spinner spinnerFonts;
 	private Button btnConfirmSettingsFonts;
-	private DatabaseHandler db;
+	private TextView tvTitleBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
@@ -31,8 +35,12 @@ public class FontsActivity extends Activity {
 		ActivityDao.addActivity(this);
 
 		spinnerFonts = (Spinner) findViewById(R.id.spinnerfonts);
-		btnConfirmSettingsFonts = (Button) findViewById(R.id.btnConfirmSettingsFonts);
-
+		btnConfirmSettingsFonts = FontDao.modifiedButton((Button) findViewById(R.id.btnConfirmSettingsFonts), getBaseContext());
+			
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(R.string.choosefont);
+				
 		// set spinner for the fonts
 		String[] arrayLayouts = getResources().getStringArray(R.array.fonts);
 
@@ -43,8 +51,7 @@ public class FontsActivity extends Activity {
 		spinnerFonts.setAdapter(adapter);
 
 		// search the values for the font in table font in the db
-		db = new DatabaseHandler(this);
-		String activeFont = db.getActiveFont();
+		String activeFont=FontDao.getActiveFont();
 
 		int position = adapter.getPosition(activeFont);
 		spinnerFonts.setSelection(position, true);
@@ -59,7 +66,7 @@ public class FontsActivity extends Activity {
 				String selectedFont = spinnerFonts.getSelectedItem().toString();
 				
 				FontDao.setUtilsFonts(selectedFont);
-				db.updateFont(selectedFont);
+				FontDao.updateFont(selectedFont);
 				
 				//set the static list in FontDao
 				FontDao.setActiveFont(getBaseContext());

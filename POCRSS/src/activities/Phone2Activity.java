@@ -1,15 +1,15 @@
 package activities;
 
 import java.util.List;
-import services.ActivityDao;
-import services.DatabaseHandler;
-import services.FontDao;
-import services.ThemeDao;
 import services.UploadXML;
 import classes.Article;
 import classes.Channel;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ChannelDao;
+import dao.FontDao;
+import dao.ThemeDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -28,24 +29,28 @@ import android.widget.TextView;
 
 public class Phone2Activity extends Activity {
 
-	DatabaseHandler db;
 	LinearLayout linearLayout;
 	List<Channel> activeChannels;
+	private TextView tvTitleBar;
 
 	int[] activeFont;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		// set the database
-		db = new DatabaseHandler(Phone2Activity.this);
 		FontDao.setActiveFont(getBaseContext());
-		FontDao.setUtilsFonts(db.getActiveFont());
-		ThemeDao.setUtilsTheme(db.getActiveTheme());
+		FontDao.setUtilsFonts(FontDao.getActiveFont());
+		ThemeDao.setUtilsTheme(ThemeDao.getActiveTheme());
 
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_two_articles_per_theme);
+		
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(R.string.app_name);
 
 		// register activity as active
 		ActivityDao.addActivity(this);
@@ -53,7 +58,7 @@ public class Phone2Activity extends Activity {
 		linearLayout = (LinearLayout) findViewById(R.id.layoutTwoArticlesPerTheme);
 
 		// get list of active themes
-		activeChannels = db.getAllSelectedChannels();
+		activeChannels = ChannelDao.getAllSelectedChannels();
 
 		fillInFields();
 	}
@@ -123,7 +128,8 @@ public class Phone2Activity extends Activity {
 			public void run() {
 
 				// get activeThemeColor
-				String activeThemeColor = db.getActiveTheme();
+				String activeThemeColor = ThemeDao.getActiveTheme();
+				
 				String readOn;
 
 				// creae layout parameters for textview channels
@@ -148,17 +154,17 @@ public class Phone2Activity extends Activity {
 					if (activeThemeColor.equalsIgnoreCase("blauw")) {
 						txvChannel.setBackgroundColor(Color
 								.parseColor("#6D929B"));
-						readOn = "<FONT COLOR='#6D929B'> ... LEES MEER ...</FONT>";
+						readOn = "<FONT COLOR='#6D929B'> ... LEES MEER</FONT>";
 					}
-					if (activeThemeColor.equalsIgnoreCase("rood")) {
+					else if (activeThemeColor.equalsIgnoreCase("rood")) {
 						// theme is rood
 						txvChannel.setBackgroundColor(Color
 								.parseColor("#FF0000"));
-						readOn = "<FONT COLOR='#FF0000'> ... LEES MEER ...</FONT>";
+						readOn = "<FONT COLOR='#FF0000'> ... LEES MEER</FONT>";
 					} else {
 						txvChannel.setBackgroundColor(Color
 								.parseColor("#666666"));
-						readOn = "<FONT COLOR='#666666'> ... LEES MEER ...</FONT>";
+						readOn = "<FONT COLOR='#666666'> ... LEES MEER</FONT>";
 					}
 
 					// txvChannel.setTextSize(25);
@@ -187,8 +193,7 @@ public class Phone2Activity extends Activity {
 					txvChannel.setLayoutParams(llp);
 
 					// get the articles for this channel
-					List<Article> articlesForTheme = db
-							.getArticlesForChannel(channel);
+					List<Article> articlesForTheme = ChannelDao.getArticlesForChannel(channel);
 
 					// Article 1
 					Article a1 = articlesForTheme.get(0);
@@ -204,23 +209,9 @@ public class Phone2Activity extends Activity {
 					// description
 					TextView txvDescription1 = (TextView) getLayoutInflater()
 							.inflate(activeFont[1], null);
-					// the next &lt;/b>&lt;br>&lt;p> have to be replaced by
-					// nothing
-					String description1 = a1.getDescription()
-							.replace("&lt;", "").replace("/b>", "")
-							.replace("br>", "").replace("<P>", "")
-							.replace("p>", "").replace("<b>", "")
-							.replace("<I>", "").replace("</I>", "")
-							.replace("/I>", "").replace("I>", "");
-
-					if (description1.length() < 200) {
-						txvDescription1.setText(Html.fromHtml("<P>"
-								+ description1 + readOn + "</P>"));
-					} else {
-						txvDescription1.setText(Html.fromHtml("<P>"
-								+ description1.substring(0, 200) + readOn
-								+ "</P>"));
-					}
+						
+					txvDescription1.setText(Html.fromHtml("<P>"
+							+ a1.getDescriptionShortWithoutTags() + readOn + "</P>"));
 
 					txvDescription1.setPadding(3, 0, 3, 0);
 					txvDescription1.setTag(a1);
@@ -265,23 +256,9 @@ public class Phone2Activity extends Activity {
 					// description
 					TextView txvDescription2 = (TextView) getLayoutInflater()
 							.inflate(activeFont[1], null);
-					// the next &lt;/b>&lt;br>&lt;p> have to be replaced by
-					// nothing
-					String description2 = a2.getDescription()
-							.replace("&lt;", "").replace("/b>", "")
-							.replace("br>", "").replace("p>", "")
-							.replace("<b>", "").replace("<P>", "")
-							.replace("<I>", "").replace("</I>", "")
-							.replace("/I>", "").replace("I>", "");
 
-					if (description2.length() < 200) {
-						txvDescription2.setText(Html.fromHtml("<P>"
-								+ description2 + readOn + "</P>"));
-					} else {
-						txvDescription2.setText(Html.fromHtml("<P>"
-								+ description2.substring(0, 200) + readOn
-								+ "</P>"));
-					}
+					txvDescription2.setText(Html.fromHtml("<P>"
+							+ a2.getDescriptionShortWithoutTags() + readOn + "</P>"));
 
 					txvDescription2.setPadding(3, 0, 3, 0);
 					txvDescription2.setTag(a2);

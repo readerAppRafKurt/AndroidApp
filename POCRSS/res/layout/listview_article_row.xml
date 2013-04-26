@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?backgroundTheme"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:padding="10dp"
-    style="?backgroundTheme" >
+    android:padding="10dp" >
 
     <ImageView
         android:id="@+id/imgIcon"
@@ -18,7 +18,6 @@
 
     <LinearLayout
         android:id="@+id/innerLayoutListViewArticleRow"
-        style="?backgroundTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -28,7 +27,6 @@
 
         <LinearLayout
             android:id="@+id/innerLayoutListViewArticleRowDateAndTitle"
-            style="?backgroundTheme"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -38,11 +36,13 @@
 
             <TextView
                 android:id="@+id/txtDate"
-                style="?textTitle"
+                style="?textBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:textStyle="italic" 
+                android:gravity="right"/>
 
             <TextView
                 android:id="@+id/txtTitle"
@@ -55,19 +55,18 @@
 
         <LinearLayout
             android:id="@+id/innerLayoutListViewArticleRowArrow"
-            style="?backgroundTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_weight="10"
-            android:baselineAligned="false"
-            android:layout_gravity="center" >
+            android:baselineAligned="false" >
 
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/list_item_arrow"/>
+                android:src="@drawable/list_item_arrow" />
         </LinearLayout>
     </LinearLayout>
 

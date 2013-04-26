@@ -1,41 +1,39 @@
 package activities;
 
 import java.util.List;
-import services.ActivityDao;
-import services.DatabaseHandler;
-import services.FontDao;
-import services.ImageDao;
 import services.UploadXML;
 import classes.Article;
 import classes.AsyncTaskLoadXML_;
 import classes.Channel;
-import classes.ImageListener;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ChannelDao;
+import dao.FontDao;
+import dao.ThemeDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
 public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 
-	DatabaseHandler db;
 	ProgressBar progress;
 	List<Article> articlesForThemeAtCreate;
 	List<Article> articlesForThemeAtUpdate;
 	Channel channel;
+	private TextView tvTitleBar;
 
 	// layout parameters
 	LinearLayout layout;
@@ -45,6 +43,8 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
@@ -59,30 +59,28 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 		// get intent data
 		Intent in = getIntent();
 
-		// set the db
-		db = new DatabaseHandler(ListTitlesAndBeginForSingleThemeActivity.this);
 		// get the channel from db
-		channel = db.getChannelById(Integer.parseInt(in
+		channel = ChannelDao.getChannelById(Integer.parseInt(in
 				.getStringExtra("channelId")));
 		
 		//get active font
 		activeFont=FontDao.getLayoutXML();
 
-
 		// get the articles for this channel
-		articlesForThemeAtCreate = db.getArticlesForChannel(channel);
-		// set a new title for the screen/activity
-		ListTitlesAndBeginForSingleThemeActivity.this.setTitle(channel
-				.getDescription());
+		articlesForThemeAtCreate = ChannelDao.getArticlesForChannel(channel);
+			
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(channel.getDescription());
 
 		progress = (ProgressBar) findViewById(R.id.progressBarPhone1);
 		progress.setVisibility(View.GONE);
 
 		// start background service
-		new AsyncTaskLoadXML_(getBaseContext(), progress, db,
+		new AsyncTaskLoadXML_(getBaseContext(), progress,
 				ListTitlesAndBeginForSingleThemeActivity.this).execute();
 
-		lp = new LayoutParams(LayoutParams.MATCH_PARENT, 55);
+		lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		lpTitle = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 
@@ -110,7 +108,7 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 			if(UploadXML.isAlreadyBusy()!=true)
 			{
 			// start background service
-			new AsyncTaskLoadXML_(getBaseContext(), progress, db,
+			new AsyncTaskLoadXML_(getBaseContext(), progress,
 					ListTitlesAndBeginForSingleThemeActivity.this).execute();
 			}
 		}
@@ -118,20 +116,16 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 
 	public void refreshScreen() {
 
-		//articlesForTheme.clear();
-
-		Log.w("test", "in refreshScreen");
-		articlesForThemeAtUpdate = db.getArticlesForChannel(channel);
+		articlesForThemeAtUpdate = ChannelDao.getArticlesForChannel(channel);
 
 		runOnUiThread(new Runnable() {
 			public void run() {
-				Log.w("test", "in runnable van refreshScreen");
 				// remove all textviews
 				layout.removeAllViews();
 
-				// set a new title for the screen/activity
-				ListTitlesAndBeginForSingleThemeActivity.this.setTitle(channel
-						.getDescription());
+				//set new content titleBar
+				tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+				tvTitleBar.setText(channel.getDescription());
 
 				fillInFields(articlesForThemeAtUpdate);
 			}
@@ -140,6 +134,11 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 	}
 
 	private void fillInFields(List<Article> articlesForTheme) {
+		
+		// get activeThemeColor
+		String activeThemeColor = ThemeDao.getActiveTheme();
+		String readOn;
+		
 		// loop over all the articles from the selected channel
 		for (Article a : articlesForTheme) {
 			//info set style at runtime
@@ -152,19 +151,25 @@ public class ListTitlesAndBeginForSingleThemeActivity extends Activity {
 			tvTitle.setGravity(Gravity.CENTER);
 			tvTitle.setTypeface(null, Typeface.BOLD);
 
-			// the next &lt;/b>&lt;br>&lt;p> have to be replaced by nothing
-			String test = a.getDescription().replace("&lt;", "")
-					.replace("/b>", "").replace("br>", "").replace("p>", "")
-					.replace("<b>", "").replace("<P>", "").replace("I>", "")
-					.replace("/I>", "").replace("<I>", "");
-
-			// set textview article with the first 200 characters
-			TextView tvArticle = (TextView)getLayoutInflater().inflate(activeFont[1], null);
-			if (test.length() > 200) {
-				tvArticle.setText(test.substring(0, 200));
-			} else {
-				tvArticle.setText(test);
+			if (activeThemeColor.equalsIgnoreCase("blauw")) {
+				tvTitle.setBackgroundColor(Color
+						.parseColor("#6D929B"));
+				readOn = "<FONT COLOR='#6D929B'> ... LEES MEER</FONT>";
 			}
+			else if (activeThemeColor.equalsIgnoreCase("rood")) {
+				tvTitle.setBackgroundColor(Color
+						.parseColor("#FF0000"));
+				readOn = "<FONT COLOR='#FF0000'> ... LEES MEER</FONT>";
+			} else {
+				tvTitle.setBackgroundColor(Color
+						.parseColor("#666666"));
+				readOn = "<FONT COLOR='#666666'> ... LEES MEER</FONT>";
+			}
+				
+			TextView tvArticle = (TextView)getLayoutInflater().inflate(activeFont[1], null);
+			tvArticle.setText(Html.fromHtml(a.getDescriptionShortWithoutTags()+readOn));
+			
+
 			tvArticle.setPadding(3, 0, 3, 0);
 			tvArticle.setTag(a);
 

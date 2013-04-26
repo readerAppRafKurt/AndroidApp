@@ -9,5 +9,5 @@
         android:id="@+id/layoutPossibleChoice"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="?backgroundTheme"/>
+        style="?textBody"/>
 </RelativeLayout>

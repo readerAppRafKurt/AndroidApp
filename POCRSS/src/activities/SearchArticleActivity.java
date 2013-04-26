@@ -2,35 +2,40 @@ package activities;
 
 
 import java.util.List;
-import services.ActivityDao;
-import services.DatabaseHandler;
 import classes.Article;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ArticleDao;
+import dao.FontDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchArticleActivity extends Activity {
-	
-	DatabaseHandler db;	
+		
 	Button btnSearchArticleById;
 	EditText editTextSearchArticleById;
 	List<Article> listArticles;
 	ListView listView;
+	private TextView tvTitleBar;
 	
 	//swipe mogelijkheid helemaal uit zetten
     @Override
     public void onCreate(Bundle savedInstanceState) {	
+    	
+    	requestWindowFeature(Window.FEATURE_NO_TITLE);
     		
     	Utils.setThemeToActivity(this);
     	super.onCreate(savedInstanceState);
@@ -39,12 +44,15 @@ public class SearchArticleActivity extends Activity {
         
 		// register activity as active
 		ActivityDao.addActivity(this);
+		
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText(R.string.title_activity_search_article);
         
-        btnSearchArticleById=(Button)findViewById(R.id.btnSearchArticleById);
+		btnSearchArticleById = FontDao.modifiedButton((Button) findViewById(R.id.btnSearchArticleById), getBaseContext());
+        
         editTextSearchArticleById=(EditText)findViewById(R.id.editTextSearchArticleById);
         listView =(ListView)findViewById(R.id.listFoundArticles);
-        
-        db =new DatabaseHandler(this);
         
         btnSearchArticleById.setOnClickListener(new OnClickListener(
         		
@@ -53,7 +61,7 @@ public class SearchArticleActivity extends Activity {
 						//voorlopig enkel zoeken in titel. Ook in omschrijving?
 						
 						String userInput=editTextSearchArticleById.getText().toString();
-						listArticles=db.getArticlesForSearch(userInput);
+						listArticles=ArticleDao.getArticlesForSearch(userInput);
 						
 						
 					      Article[] articles=new Article[listArticles.size()];
@@ -63,7 +71,7 @@ public class SearchArticleActivity extends Activity {
 					        }	
 					      
 					        ArrayAdapter<Article> adapter = new ArrayAdapter<Article>(SearchArticleActivity.this,
-							          android.R.layout.simple_list_item_1, articles);
+							          R.layout.simple_list_item_1_mod, articles);
 		 
 					        listView.setOnItemClickListener(new OnItemClickListener(){
 

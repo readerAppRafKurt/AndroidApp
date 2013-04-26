@@ -112,6 +112,7 @@ public class XMLParser {
 	 * @param key
 	 *            string
 	 * */
+	@SuppressWarnings("static-access")
 	public String getValue(Element item, String str) {
 		NodeList n = item.getElementsByTagName(str);
 		return this.getElementValue(n.item(0));

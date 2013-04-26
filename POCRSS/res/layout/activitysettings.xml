@@ -1,12 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?backgroundTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity" 
-    style="?backgroundTheme">
-    <ListView
-        android:id="@android:id/list"
+    tools:context=".SettingsActivity" >
+
+    <include
+        android:id="@+id/title_bar_header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="?listviewTheme"/>
+        layout="@layout/custom_title_bar" />
+
+    <ListView
+        android:id="@android:id/list"
+        style="?listviewTheme"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/title_bar_header" />
+
 </RelativeLayout>

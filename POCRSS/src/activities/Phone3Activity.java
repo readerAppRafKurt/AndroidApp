@@ -1,52 +1,50 @@
 package activities;
 
 import java.util.List;
-
-import services.ActivityDao;
-import services.ArticleAdapter;
-import services.DatabaseHandler;
-import services.ImageDao;
+import viewElements.ArticleAdapter;
 import classes.Article;
-import classes.Channel;
 import classes.Utils;
-
 import com.example.pocrss.R;
-import com.example.pocrss.R.layout;
-import com.example.pocrss.R.menu;
-
+import dao.ActivityDao;
+import dao.ArticleDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.view.Window;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Phone3Activity extends Activity {
 	
 	ListView listView;
-	DatabaseHandler db;
+	private TextView tvTitleBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_phone3);
 		
-		db=new DatabaseHandler(this);
+		// register as active
+		ActivityDao.addActivity(this);
 		
 		//get list of articles
-		Channel channel=new Channel();
-		channel.set_id(1);
-		List<Article> articles=db.getArticlesForChannel(channel);
+		//Channel channel=new Channel();
+		//channel.set_id(1);
+		//List<Article> articles=ChannelDao.getArticlesForChannel(channel);
+		List<Article> articles=ArticleDao.getAllArticles();
 		
-        
+		//set new content titleBar
+		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+		tvTitleBar.setText("Het Nieuwsblad");
+		
+		
 		//list of articles from 1 to end
         Article article_data[] = new Article[articles.size()];
         articles.toArray(article_data);

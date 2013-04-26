@@ -1,16 +1,15 @@
 package activities;
 
+
+//not implemented
 import services.DatabaseHandler;
 
 import classes.Utils;
 
 import com.example.pocrss.R;
-import com.example.pocrss.R.layout;
-import com.example.pocrss.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -19,9 +18,12 @@ public class PageTurnActivity extends Activity {
 	
 	
 	private Spinner spinnerpageturner;
+	@SuppressWarnings("unused")
 	private Button btnConfirmSettingPageTurner;
+	@SuppressWarnings("unused")
 	private DatabaseHandler db;
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		

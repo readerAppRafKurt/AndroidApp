@@ -59,6 +59,7 @@
         <item>Phone 1</item>
         <item>Phone 2</item>
         <item>Phone 3</item>
+        <item>Phone 4</item>
         <item>Tablet 1</item>
         <item>Tablet 2</item>
     </string-array>
@@ -79,5 +80,7 @@
     <string name="title_activity_single_article_search">Het Nieuwsblad</string>
     <string name="title_activity_phone3">Het Nieuwsblad</string>
     <string name="title_activity_full_screen_image">Het Nieuwsblad</string>
+    <string name="title_activity_phone4">Het Nieuwsblad</string>
+    <string name="title_activity_tab">Het Nieuwsblad</string>
 
 </resources>

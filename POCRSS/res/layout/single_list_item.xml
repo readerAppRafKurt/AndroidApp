@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scroll_view_start_test_for_all"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    style="?backgroundTheme">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?backgroundTheme"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/title_bar_header"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
-        style="?backgroundTheme">
+        layout="@layout/custom_title_bar" />
 
-        <TextView
-            android:id="@+id/title_label"
-            android:layout_width="fill_parent"
+    <ScrollView
+        android:id="@+id/scroll_view_start_test_for_all"
+        style="?backgroundTheme"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            style="?backgroundTheme"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip"
-            android:textStyle="bold" 
-            style="?textTitle"/>
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/description_label"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            style="?textBody"/>
+            <TextView
+                android:id="@+id/title_label"
+                style="?textTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/link_label"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" 
-            style="?textBody"/>
+            <TextView
+                android:id="@+id/description_label"
+                style="?textBody"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/articleImage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-           	android:scaleType="fitStart"
-           	android:adjustViewBounds="true"
-            android:contentDescription="@string/image_article" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/link_label"
+                style="?textBody"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
 
-</ScrollView>
+            <ImageView
+                android:id="@+id/articleImage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_article"
+                android:scaleType="fitStart" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

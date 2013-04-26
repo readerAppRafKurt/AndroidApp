@@ -1,7 +1,8 @@
 package classes;
 
 import java.util.List;
-import services.DatabaseHandler;
+
+import dao.ChannelDao;
 import services.UploadXML;
 import activities.ListTitlesAndBeginForSingleThemeActivity;
 import activities.TabletHorizontalOverviewActivity;
@@ -22,11 +23,11 @@ public class AsyncTaskLoadXML_ extends AsyncTask<String, Integer, Void> {
 	private Context context;
 	private Activity activity;
 
-	public AsyncTaskLoadXML_(Context context, ProgressBar progress,
-			DatabaseHandler db, Activity activity) {
+	public AsyncTaskLoadXML_(Context context, ProgressBar progress, Activity activity) {
 		this.progress = progress;
 		// get all the selected rss feeds from the db
-		channels = db.getAllSelectedChannels();
+		//channels = db.getAllSelectedChannels();
+		channels=ChannelDao.getAllSelectedChannels();
 		this.context = context;
 		this.activity = activity;
 	}
@@ -102,9 +103,10 @@ public class AsyncTaskLoadXML_ extends AsyncTask<String, Integer, Void> {
 		});
 
 		// thread has to be idle for 900000 milliseconds/15 minutes
+		// for test only 1,5 m
 		for (int i = 0; i < 9; i++) {
 			try {
-				Thread.sleep(100000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

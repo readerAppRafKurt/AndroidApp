@@ -2,11 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Phone3Activity" >
+    tools:context=".Phone3Activity" 
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_bar_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/custom_title_bar" />
 
     <ListView
         android:id="@+id/listViewPhone3"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
-    
-    </LinearLayout>
+
+</LinearLayout>

@@ -1,14 +1,15 @@
 package activities;
 
 import java.util.List;
-import services.DatabaseHandler;
-import services.FontDao;
 import services.UploadXML;
 import classes.Article;
 import classes.AsyncTaskLoadXML_;
 import classes.Channel;
 import classes.Utils;
 import com.example.pocrss.R;
+import dao.ActivityDao;
+import dao.ChannelDao;
+import dao.FontDao;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 	ProgressBar progress;
 	int[] activeFont;
 	
-	DatabaseHandler db;
+	//DatabaseHandler db;
 	Intent in;
 	List<Article> articlesForThemeAtCreate;
 	List<Article> articlesForThemeAtUpdate;
@@ -38,6 +39,9 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_titles_article_for_single_theme);
+		
+		// register as active
+		ActivityDao.addActivity(this);
 
 		// set the listview
 		listView = (ListView) findViewById(R.id.listArticlesForTheme);
@@ -46,13 +50,13 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 		in = getIntent();
 
 		// set the db
-		db = new DatabaseHandler(ListTitlesArticleForSingleThemeActivity.this);
+		//db = new DatabaseHandler(ListTitlesArticleForSingleThemeActivity.this);
 		// get the channel from db
-		channel = db.getChannelById(Integer.parseInt(in
+		channel = ChannelDao.getChannelById(Integer.parseInt(in
 				.getStringExtra("channelId")));
 
 		// get the articles for this channel
-		articlesForThemeAtCreate = db.getArticlesForChannel(channel);
+		articlesForThemeAtCreate = ChannelDao.getArticlesForChannel(channel);
 		
 		// set a new title for the screen/activity
 		ListTitlesArticleForSingleThemeActivity.this.setTitle(channel
@@ -62,7 +66,7 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 		progress.setVisibility(View.GONE);
 
 		// start background service
-		new AsyncTaskLoadXML_(getBaseContext(), progress, db,
+		new AsyncTaskLoadXML_(getBaseContext(), progress,
 				ListTitlesArticleForSingleThemeActivity.this).execute();
 		
 		this.fillInFields(articlesForThemeAtCreate);
@@ -86,7 +90,7 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 					"in onRestart met reeds bezig " + UploadXML.isAlreadyBusy());
 			if (UploadXML.isAlreadyBusy() != true) {
 				// start background service
-				new AsyncTaskLoadXML_(getBaseContext(), progress, db,
+				new AsyncTaskLoadXML_(getBaseContext(), progress,
 						ListTitlesArticleForSingleThemeActivity.this)
 						.execute();
 			}
@@ -98,7 +102,7 @@ public class ListTitlesArticleForSingleThemeActivity extends Activity {
 		//articlesForTheme.clear();
 
 		Log.w("test", "in refreshScreen");
-		articlesForThemeAtUpdate = db.getArticlesForChannel(channel);
+		articlesForThemeAtUpdate = ChannelDao.getArticlesForChannel(channel);
 
 		runOnUiThread(new Runnable() {
 			public void run() {
