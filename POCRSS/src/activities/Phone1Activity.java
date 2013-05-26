@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,23 +30,23 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class Phone1Activity extends Activity {
 
-	//DatabaseHandler db;
+	// DatabaseHandler db;
 
 	int[] activeFont;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		FontDao.setActiveFont(getBaseContext());
 		FontDao.setUtilsFonts(FontDao.getActiveFont());
 		ThemeDao.setUtilsTheme(ThemeDao.getActiveTheme());
 		Utils.setThemeToActivity(this);
-		
-		super.onCreate(savedInstanceState);	
+
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_phone1);
-		
+
 		// get active font
 		activeFont = FontDao.getLayoutXML();
 
@@ -173,4 +177,9 @@ public class Phone1Activity extends Activity {
 
 		super.onBackPressed();
 	}
+
+	public void clickHeader(View v) {	
+		this.openOptionsMenu();
+	}
+
 }

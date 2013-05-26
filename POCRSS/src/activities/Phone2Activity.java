@@ -37,7 +37,7 @@ public class Phone2Activity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		FontDao.setActiveFont(getBaseContext());
@@ -47,9 +47,9 @@ public class Phone2Activity extends Activity {
 		Utils.setThemeToActivity(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_two_articles_per_theme);
-		
-		//set new content titleBar
-		tvTitleBar=(TextView)findViewById(R.id.tvTitleBar);
+
+		// set new content titleBar
+		tvTitleBar = (TextView) findViewById(R.id.tvTitleBar);
 		tvTitleBar.setText(R.string.app_name);
 
 		// register activity as active
@@ -129,7 +129,7 @@ public class Phone2Activity extends Activity {
 
 				// get activeThemeColor
 				String activeThemeColor = ThemeDao.getActiveTheme();
-				
+
 				String readOn;
 
 				// creae layout parameters for textview channels
@@ -155,8 +155,7 @@ public class Phone2Activity extends Activity {
 						txvChannel.setBackgroundColor(Color
 								.parseColor("#6D929B"));
 						readOn = "<FONT COLOR='#6D929B'> ... LEES MEER</FONT>";
-					}
-					else if (activeThemeColor.equalsIgnoreCase("rood")) {
+					} else if (activeThemeColor.equalsIgnoreCase("rood")) {
 						// theme is rood
 						txvChannel.setBackgroundColor(Color
 								.parseColor("#FF0000"));
@@ -193,7 +192,8 @@ public class Phone2Activity extends Activity {
 					txvChannel.setLayoutParams(llp);
 
 					// get the articles for this channel
-					List<Article> articlesForTheme = ChannelDao.getArticlesForChannel(channel);
+					List<Article> articlesForTheme = ChannelDao
+							.getArticlesForChannel(channel);
 
 					// Article 1
 					Article a1 = articlesForTheme.get(0);
@@ -209,9 +209,10 @@ public class Phone2Activity extends Activity {
 					// description
 					TextView txvDescription1 = (TextView) getLayoutInflater()
 							.inflate(activeFont[1], null);
-						
+
 					txvDescription1.setText(Html.fromHtml("<P>"
-							+ a1.getDescriptionShortWithoutTags() + readOn + "</P>"));
+							+ a1.getDescriptionShortWithoutTags() + readOn
+							+ "</P>"));
 
 					txvDescription1.setPadding(3, 0, 3, 0);
 					txvDescription1.setTag(a1);
@@ -258,7 +259,8 @@ public class Phone2Activity extends Activity {
 							.inflate(activeFont[1], null);
 
 					txvDescription2.setText(Html.fromHtml("<P>"
-							+ a2.getDescriptionShortWithoutTags() + readOn + "</P>"));
+							+ a2.getDescriptionShortWithoutTags() + readOn
+							+ "</P>"));
 
 					txvDescription2.setPadding(3, 0, 3, 0);
 					txvDescription2.setTag(a2);
@@ -292,4 +294,9 @@ public class Phone2Activity extends Activity {
 			}
 		});
 	}
+
+	public void clickHeader(View v) {
+		this.openOptionsMenu();
+	}
+
 }

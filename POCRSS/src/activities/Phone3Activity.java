@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -102,4 +103,9 @@ public class Phone3Activity extends Activity {
 		
 		super.onBackPressed();
 	}
+
+	public void clickHeader(View v) {
+		this.openOptionsMenu();
+	}
+
 }

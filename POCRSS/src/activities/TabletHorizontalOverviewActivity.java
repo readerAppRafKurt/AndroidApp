@@ -511,4 +511,7 @@ public class TabletHorizontalOverviewActivity extends Activity {
 		alertDialog.show();
 	}
 
+	public void clickHeader(View v) {
+		this.openOptionsMenu();
+	}
 }

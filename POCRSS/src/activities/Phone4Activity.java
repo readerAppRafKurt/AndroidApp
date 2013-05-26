@@ -13,6 +13,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -109,6 +110,9 @@ public class Phone4Activity extends TabActivity {
 		super.onBackPressed();
 	}
 
+	public void clickHeader(View v) {
+		this.openOptionsMenu();
+	}
 	/*
 	@Override
 	protected void onRestart() {
